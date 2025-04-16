@@ -85,7 +85,7 @@ input, select, textarea {
 	html {
 		background-color: #313a3d;
 		background-attachment: fixed,						fixed;
-		background-image: url("images/overlay.png"), url("images/bg.jpg");
+		background-image: url("../images/overlay.png"), url("../images/bg.jpg");
 		background-position: top left,					center center;
 		background-repeat: repeat,						none;
 		background-size: auto,						cover;
@@ -116,7 +116,7 @@ input, select, textarea {
 		}
 
 	body, input, select, textarea {
-		color: #6f7577;
+		color: #D59064; /* Changed color */
 		font-family: "Raleway", "Helvetica", sans-serif;
 		font-size: 15pt;
 		font-weight: 400;
@@ -140,7 +140,7 @@ input, select, textarea {
 		}
 
 	strong, b {
-		color: #61686b;
+		color: #E5DDD7; /* Changed color */
 		font-weight: 700;
 	}
 
@@ -153,7 +153,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #61686b;
+		color: #D9716F; /* Changed color */
 		font-weight: 800;
 		letter-spacing: 0.075em;
 		line-height: 1em;
