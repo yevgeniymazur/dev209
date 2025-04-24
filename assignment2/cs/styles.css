@@ -23,13 +23,15 @@ main {
 /* Card Styling */
 .card {
   background-color: hsl(0, 0%, 100%);
-  padding: 1.5rem 1rem 2.25rem 1rem; /* top, right, bottom, left */
+  padding: 1rem; /* all sides now equal */
+  padding-bottom: 2.25rem; /* extra space just at the bottom */
   border-radius: 1.25rem;
-  max-width: 280px; /* narrower card */
+  max-width: 280px;
   width: 90%;
   text-align: center;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
 }
+
 
 
 
