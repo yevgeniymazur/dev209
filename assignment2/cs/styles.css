@@ -22,22 +22,25 @@ main {
 
 /* Card Styling */
 .card {
-  background-color: hsl(0, 0%, 100%);
   padding: 1.5rem;
-  border-radius: 1.25rem;
   max-width: 320px;
-  text-align: center;
+  width: 90%;
+  border-radius: 1.25rem;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  text-align: center;
 }
+
 
 /* QR Image */
 .qr-image {
-  width: 288px;
-  height: 288px;
-  object-fit: cover;
-  border-radius: 0.75rem;
-  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 288px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem auto;
 }
+
 
 /* Headline */
 .card h1 {
