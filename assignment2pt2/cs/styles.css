@@ -14,10 +14,12 @@ body {
 .grid {
   list-style-type: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   justify-items: center;
+  padding: 0;
 }
+
 
 /* Mobile responsive: 1 column under 1000px */
 @media (max-width: 1000px) {
