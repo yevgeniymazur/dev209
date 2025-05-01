@@ -1,9 +1,11 @@
+// DOM Elements
 const board = document.getElementById('game-board');
 const message = document.getElementById('message');
 const movesDisplay = document.getElementById('moves');
 const restartBtn = document.getElementById('restart');
 const difficultyRadios = document.querySelectorAll('input[name="difficulty"]');
 
+// Symbol bank using emojis (you can switch to images later)
 const symbolBank = [
   '⛏️', '🪓', '🧱', '🔥', '🌲', '🟩', '💎', '🐷',
   '👾', '🌋', '🧊', '🍖', '🌑', '🪨', '📦', '🧠',
@@ -11,18 +13,24 @@ const symbolBank = [
   '🐔', '🎮', '📡', '💣', '🔩', '🧪', '🧬', '🧤'
 ];
 
+// ✅ Sound Effects
+const flipSound = new Audio('sounds/flip.mp3');
+const matchSound = new Audio('sounds/match.mp3');
+const mismatchSound = new Audio('sounds/mismatch.mp3');
+
 let cards = [];
 let flipped = [];
 let matched = [];
 let moves = 0;
 let gridSize = 4;
 
+// ✅ Functional Programming Example (pure shuffle function)
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
 function createBoard() {
   board.innerHTML = '';
-  board.style.gridTemplateColumns = `repeat(${gridSize}, 100px)`;
-  board.style.gridTemplateRows = `repeat(${gridSize}, 100px)`;
+  board.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+  board.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 
   let totalCards = gridSize * gridSize;
   if (totalCards % 2 !== 0) totalCards--;
@@ -32,18 +40,21 @@ function createBoard() {
   cards = shuffle([...symbols, ...symbols]);
 
   cards.forEach((symbol, index) => {
+    // ✅ DOM Manipulation
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.symbol = symbol;
     card.dataset.index = index;
-    card.textContent = ''; // initially hidden
+    card.textContent = ''; // start face down
+
+    // ✅ Event Listener
     card.addEventListener('click', flipCard);
     board.appendChild(card);
   });
 
-  // Fill any remaining spots with hidden dummy cards (e.g., for odd-sized grids)
-  const missing = (gridSize * gridSize) - cards.length;
-  for (let i = 0; i < missing; i++) {
+
+  const remaining = (gridSize * gridSize) - cards.length;
+  for (let i = 0; i < remaining; i++) {
     const dummy = document.createElement('div');
     dummy.classList.add('card');
     dummy.style.visibility = 'hidden';
@@ -59,6 +70,11 @@ function flipCard(e) {
 
   clickedCard.classList.add('flipped');
   clickedCard.textContent = clickedCard.dataset.symbol;
+
+  // ▶️ Flip Sound
+  flipSound.currentTime = 0;
+  flipSound.play();
+
   flipped.push(index);
 
   if (flipped.length === 2) {
@@ -78,10 +94,18 @@ function checkMatch() {
     c2.classList.add('matched');
     matched.push(c1.dataset.symbol);
 
+    // ✅ Match Sound
+    matchSound.currentTime = 0;
+    matchSound.play();
+
     if (matched.length === cards.length / 2) {
       message.textContent = `🎉 Game Over! You won in ${moves} moves.`;
     }
   } else {
+    // ❌ Mismatch Sound
+    mismatchSound.currentTime = 0;
+    mismatchSound.play();
+
     setTimeout(() => {
       c1.classList.remove('flipped');
       c2.classList.remove('flipped');
@@ -93,7 +117,8 @@ function checkMatch() {
   flipped = [];
 }
 
-function resetGame() {
+// ✅ ES6 Arrow Function
+const resetGame = () => {
   moves = 0;
   flipped = [];
   matched = [];
@@ -104,11 +129,13 @@ function resetGame() {
   gridSize = parseInt(selectedRadio.value);
 
   createBoard();
-}
+};
 
+// Start and reset event listeners
 restartBtn.addEventListener('click', resetGame);
 difficultyRadios.forEach(radio => radio.addEventListener('change', resetGame));
 
+// Start game on load
 resetGame();
 
 
