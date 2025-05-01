@@ -1,38 +1,45 @@
 const board = document.getElementById('game-board');
 const message = document.getElementById('message');
 const movesDisplay = document.getElementById('moves');
+const restartBtn = document.getElementById('restart');
+const difficultySelect = document.getElementById('difficulty');
 
-const symbols = ['🍎', '🍌', '🍇', '🍊', '🍓', '🍍', '🥝', '🍒'];
-let cards = [...symbols, ...symbols]; // duplicate for matching pairs
+const symbolBank = ['🍎', '🍌', '🍇', '🍊', '🍓', '🍍', '🥝', '🍒', '🍉', '🥥', '🍑', '🍈', '🍋', '🥭', '🍅', '🌽', '🥕', '🧄'];
+
+let cards = [];
 let flipped = [];
 let matched = [];
 let moves = 0;
+let gridSize = 4;
 
-// ES6 feature: arrow functions, let/const, spread operator
+// Shuffle function (Functional programming)
+const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
-// Functional programming: shuffle is pure, takes input and returns output without side effects
-const shuffle = (array) =>
-  array.sort(() => Math.random() - 0.5);
-
-// DOM manipulation: create card elements dynamically
+// Create board
 function createBoard() {
   board.innerHTML = '';
-  shuffle(cards).forEach((symbol, index) => {
+  board.style.gridTemplateColumns = `repeat(${gridSize}, 100px)`;
+  board.style.gridTemplateRows = `repeat(${gridSize}, 100px)`;
+
+  const pairCount = (gridSize * gridSize) / 2;
+  const symbols = shuffle([...symbolBank]).slice(0, pairCount);
+  cards = shuffle([...symbols, ...symbols]);
+
+  cards.forEach((symbol, index) => {
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.symbol = symbol;
     card.dataset.index = index;
-    card.addEventListener('click', flipCard); // Event listener
+    card.addEventListener('click', flipCard);
     board.appendChild(card);
   });
 }
 
-// Event handler: flipCard
 function flipCard(e) {
   const clickedCard = e.target;
   const index = clickedCard.dataset.index;
 
-  if (flipped.includes(index) || matched.includes(clickedCard.dataset.symbol)) return;
+  if (flipped.includes(index) || clickedCard.classList.contains('matched')) return;
 
   clickedCard.classList.add('flipped');
   clickedCard.textContent = clickedCard.dataset.symbol;
@@ -45,7 +52,6 @@ function flipCard(e) {
   }
 }
 
-// Game logic: matching cards
 function checkMatch() {
   const [i1, i2] = flipped;
   const c1 = board.children[i1];
@@ -56,7 +62,7 @@ function checkMatch() {
     c2.classList.add('matched');
     matched.push(c1.dataset.symbol);
 
-    if (matched.length === symbols.length) {
+    if (matched.length === cards.length / 2) {
       message.textContent = `🎉 Game Over! You won in ${moves} moves.`;
     }
   } else {
@@ -71,4 +77,20 @@ function checkMatch() {
   flipped = [];
 }
 
-createBoard();
+function resetGame() {
+  moves = 0;
+  flipped = [];
+  matched = [];
+  movesDisplay.textContent = `Moves: 0`;
+  message.textContent = '';
+  gridSize = parseInt(difficultySelect.value);
+  createBoard();
+}
+
+// Event: restart and difficulty change
+restartBtn.addEventListener('click', resetGame);
+difficultySelect.addEventListener('change', resetGame);
+
+// Initial game start
+resetGame();
+
