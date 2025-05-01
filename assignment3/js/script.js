@@ -4,7 +4,8 @@ const movesDisplay = document.getElementById('moves');
 const restartBtn = document.getElementById('restart');
 const difficultySelect = document.getElementById('difficulty');
 
-const symbolBank = ['🍎', '🍌', '🍇', '🍊', '🍓', '🍍', '🥝', '🍒', '🍉', '🥥', '🍑', '🍈', '🍋', '🥭', '🍅', '🌽', '🥕', '🧄'];
+const symbolBank = ['⛏️', '🪓', '🧱', '🔥', '🌲', '🟩', '💎', '🐷', '👾', '🌋', '🧊', '🍖', '🌑', '🪨', '📦', '🧠', '🕹️', '🐺', '🪵', '⚒️', '🧟', '👻', '🌾', '🪙', '🐔', '🎮'];
+
 
 let cards = [];
 let flipped = [];
@@ -88,14 +89,45 @@ function resetGame() {
   matched = [];
   movesDisplay.textContent = `Moves: 0`;
   message.textContent = '';
+
+  // Get grid size from the dropdown (4, 6, or 8)
   gridSize = parseInt(difficultySelect.value);
-  createBoard();
+  
+  // Calculate total cards
+  let totalCards = gridSize * gridSize;
+
+  // ✅ Ensure totalCards is even so we can create pairs
+  if (totalCards % 2 !== 0) totalCards--; // If it's odd, reduce by 1
+
+  // Set the board's CSS grid style
+  board.style.gridTemplateColumns = `repeat(${gridSize}, 100px)`;
+  board.style.gridTemplateRows = `repeat(${gridSize}, 100px)`;
+
+  // ✅ Select just enough symbols for the number of pairs needed
+  const pairCount = totalCards / 2;
+  const symbols = shuffle([...symbolBank]).slice(0, pairCount);
+
+  // ✅ Duplicate symbols for pairs and shuffle them
+  cards = shuffle([...symbols, ...symbols]);
+
+  // ✅ Clear board and create card elements
+  board.innerHTML = '';
+  cards.forEach((symbol, index) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.symbol = symbol;
+    card.dataset.index = index;
+    card.addEventListener('click', flipCard);
+    board.appendChild(card);
+  });
+
+  // ✅ If totalCards is less than full grid (e.g., 25 in 5x5), fill the last square with a hidden dummy card
+  const remainingSpots = (gridSize * gridSize) - cards.length;
+  for (let i = 0; i < remainingSpots; i++) {
+    const dummy = document.createElement('div');
+    dummy.classList.add('card');
+    dummy.style.visibility = 'hidden'; // Makes it invisible but keeps spacing
+    board.appendChild(dummy);
+  }
 }
-
-// Event: restart and difficulty change
-restartBtn.addEventListener('click', resetGame);
-difficultySelect.addEventListener('change', resetGame);
-
-// Initial game start
-resetGame();
 
