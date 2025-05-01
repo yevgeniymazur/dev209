@@ -5,7 +5,7 @@ const movesDisplay = document.getElementById('moves');
 const restartBtn = document.getElementById('restart');
 const difficultyRadios = document.querySelectorAll('input[name="difficulty"]');
 
-// Symbol bank using emojis (you can switch to images later)
+// Symbol bank using emojis
 const symbolBank = [
   '⛏️', '🪓', '🧱', '🔥', '🌲', '🟩', '💎', '🐷',
   '👾', '🌋', '🧊', '🍖', '🌑', '🪨', '📦', '🧠',
@@ -24,35 +24,37 @@ let matched = [];
 let moves = 0;
 let gridSize = 4;
 
-// ✅ Functional Programming Example (pure shuffle function)
+// ✅ Functional Programming Example (Chapter 11): Pure shuffle function
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
 function createBoard() {
   board.innerHTML = '';
-  board.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-  board.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+  
+  // ✅ Correct fixed sizing to prevent stretched cards
+  board.style.gridTemplateColumns = `repeat(${gridSize}, 100px)`;
+  board.style.gridAutoRows = '100px';
 
   let totalCards = gridSize * gridSize;
-  if (totalCards % 2 !== 0) totalCards--;
+  if (totalCards % 2 !== 0) totalCards--; // ensure even number
 
   const pairCount = totalCards / 2;
   const symbols = shuffle([...symbolBank]).slice(0, pairCount);
   cards = shuffle([...symbols, ...symbols]);
 
   cards.forEach((symbol, index) => {
-    // ✅ DOM Manipulation
+    // ✅ DOM Manipulation: Create and append card element
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.symbol = symbol;
     card.dataset.index = index;
     card.textContent = ''; // start face down
 
-    // ✅ Event Listener
+    // ✅ Event Listener: Add click event to each card
     card.addEventListener('click', flipCard);
     board.appendChild(card);
   });
 
-
+  // Fill any remaining spots with invisible dummies
   const remaining = (gridSize * gridSize) - cards.length;
   for (let i = 0; i < remaining; i++) {
     const dummy = document.createElement('div');
@@ -71,7 +73,7 @@ function flipCard(e) {
   clickedCard.classList.add('flipped');
   clickedCard.textContent = clickedCard.dataset.symbol;
 
-  // ▶️ Flip Sound
+  // ▶️ Play flip sound
   flipSound.currentTime = 0;
   flipSound.play();
 
@@ -94,7 +96,7 @@ function checkMatch() {
     c2.classList.add('matched');
     matched.push(c1.dataset.symbol);
 
-    // ✅ Match Sound
+    // ✅ Play match sound
     matchSound.currentTime = 0;
     matchSound.play();
 
@@ -102,7 +104,7 @@ function checkMatch() {
       message.textContent = `🎉 Game Over! You won in ${moves} moves.`;
     }
   } else {
-    // ❌ Mismatch Sound
+    // ❌ Play mismatch sound
     mismatchSound.currentTime = 0;
     mismatchSound.play();
 
@@ -117,7 +119,7 @@ function checkMatch() {
   flipped = [];
 }
 
-// ✅ ES6 Arrow Function
+// ✅ ES6 Feature Example: Arrow function + const
 const resetGame = () => {
   moves = 0;
   flipped = [];
@@ -131,11 +133,11 @@ const resetGame = () => {
   createBoard();
 };
 
-// Start and reset event listeners
+// Event listeners for restart and difficulty switch
 restartBtn.addEventListener('click', resetGame);
 difficultyRadios.forEach(radio => radio.addEventListener('change', resetGame));
 
-// Start game on load
+// Start game
 resetGame();
 
 
