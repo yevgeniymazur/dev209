@@ -1,11 +1,9 @@
-// DOM elements
 const board = document.getElementById('game-board');
 const message = document.getElementById('message');
 const movesDisplay = document.getElementById('moves');
 const restartBtn = document.getElementById('restart');
 const difficultyRadios = document.querySelectorAll('input[name="difficulty"]');
 
-// Symbol bank (Minecraft-inspired)
 const symbolBank = [
   '⛏️', '🪓', '🧱', '🔥', '🌲', '🟩', '💎', '🐷',
   '👾', '🌋', '🧊', '🍖', '🌑', '🪨', '📦', '🧠',
@@ -19,16 +17,13 @@ let matched = [];
 let moves = 0;
 let gridSize = 4;
 
-// Functional programming: pure shuffle
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
-// Create game board
 function createBoard() {
   board.innerHTML = '';
   board.style.gridTemplateColumns = `repeat(${gridSize}, 100px)`;
   board.style.gridTemplateRows = `repeat(${gridSize}, 100px)`;
 
-  // Calculate number of cards (ensure even)
   let totalCards = gridSize * gridSize;
   if (totalCards % 2 !== 0) totalCards--;
 
@@ -36,17 +31,17 @@ function createBoard() {
   const symbols = shuffle([...symbolBank]).slice(0, pairCount);
   cards = shuffle([...symbols, ...symbols]);
 
-  // Create and add cards
   cards.forEach((symbol, index) => {
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.symbol = symbol;
     card.dataset.index = index;
-    card.addEventListener('click', flipCard); // Event listener
+    card.textContent = ''; // initially hidden
+    card.addEventListener('click', flipCard);
     board.appendChild(card);
   });
 
-  // Fill missing card if odd grid (e.g. 5x5)
+  // Fill any remaining spots with hidden dummy cards (e.g., for odd-sized grids)
   const missing = (gridSize * gridSize) - cards.length;
   for (let i = 0; i < missing; i++) {
     const dummy = document.createElement('div');
@@ -56,7 +51,6 @@ function createBoard() {
   }
 }
 
-// Flip card logic
 function flipCard(e) {
   const clickedCard = e.target;
   const index = clickedCard.dataset.index;
@@ -74,7 +68,6 @@ function flipCard(e) {
   }
 }
 
-// Match logic
 function checkMatch() {
   const [i1, i2] = flipped;
   const c1 = board.children[i1];
@@ -100,7 +93,6 @@ function checkMatch() {
   flipped = [];
 }
 
-// Reset and start new game
 function resetGame() {
   moves = 0;
   flipped = [];
@@ -114,10 +106,9 @@ function resetGame() {
   createBoard();
 }
 
-// Event listeners
 restartBtn.addEventListener('click', resetGame);
 difficultyRadios.forEach(radio => radio.addEventListener('change', resetGame));
 
-// Start game
 resetGame();
+
 
