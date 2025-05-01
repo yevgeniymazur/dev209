@@ -7,20 +7,21 @@
   <link rel="stylesheet" href="css/styles.css" />
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="minecraft">
+
   <h1>Memory Game</h1>
   <p id="moves">Moves: 0</p>
   <div id="game-board" class="board"></div>
   <p id="message"></p>
 <div class="controls">
-  <label for="difficulty">Difficulty:</label>
- <select id="difficulty">
-  <option value="4">4 x 4</option>
-  <option value="6">6 x 6</option>
-  <option value="8">8 x 8</option>
-</select>
+<div class="difficulty-switch">
+  <label><input type="radio" name="difficulty" value="4" checked> 4x4</label>
+  <label><input type="radio" name="difficulty" value="6"> 6x6</label>
+  <label><input type="radio" name="difficulty" value="8"> 8x8</label>
+</div>
 
-  <button id="theme-toggle">Toggle Minecraft Theme</button>
+
+  
 
 </div>
 
