@@ -31,3 +31,15 @@ body {
   color: white;
   background-color: #4caf50;
 }
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+#restart, #difficulty {
+  padding: 10px 15px;
+  font-size: 16px;
+}
