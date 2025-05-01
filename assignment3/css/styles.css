@@ -43,3 +43,27 @@ body {
   padding: 10px 15px;
   font-size: 16px;
 }
+body.minecraft {
+  background-color: #3c3c3c;
+  font-family: 'Press Start 2P', cursive;
+  color: #a8ff60;
+}
+
+body.minecraft .card {
+  background-color: #5c913b;
+  border: 3px solid #2e4600;
+  font-size: 32px;
+}
+
+body.minecraft .card.flipped,
+body.minecraft .card.matched {
+  background-color: #84c75d;
+  color: #fff;
+}
+
+body.minecraft button,
+body.minecraft select {
+  background-color: #4e944f;
+  border: none;
+  color: white;
+}
