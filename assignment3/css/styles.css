@@ -1,5 +1,5 @@
 body.minecraft {
-  background-image: url('images/minecraftwallpaper.png');
+  background-image: url('../images/minecraftwallpaper.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -7,6 +7,15 @@ body.minecraft {
   color: #a8ff60;
   text-align: center;
   padding: 20px;
+}
+
+body.minecraft::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 
