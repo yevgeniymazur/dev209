@@ -1,3 +1,4 @@
+/* Global Minecraft Theme */
 body.minecraft {
   background-image: url('../images/minecraftwallpaper.png');
   background-size: cover;
@@ -7,8 +8,10 @@ body.minecraft {
   color: #a8ff60;
   text-align: center;
   padding: 20px;
+  position: relative;
 }
 
+/* Optional dark overlay for readability */
 body.minecraft::before {
   content: "";
   position: fixed;
@@ -18,7 +21,16 @@ body.minecraft::before {
   z-index: -1;
 }
 
+/* Game Title */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #a8ff60;
+  text-shadow: 2px 2px 4px #000;
+  letter-spacing: 2px;
+}
 
+/* Game board grid */
 .board {
   display: grid;
   gap: 10px;
@@ -26,27 +38,43 @@ body.minecraft::before {
   margin: 20px auto;
 }
 
+/* Card appearance */
 .card {
   width: 100px;
   height: 100px;
   background-color: #5c913b;
-  border: 3px solid #2e4600;
+  border: 4px solid #2e4600;
   border-radius: 8px;
   font-size: 36px;
   color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s, color 0.3s;
   cursor: pointer;
+
+  /* 🧊 Floating 3D look */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  transform: translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  image-rendering: pixelated;
 }
 
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
+/* Flipped or matched cards */
 .card.flipped,
 .card.matched {
   color: #fff;
   background-color: #84c75d;
+  border-color: #3e6f2a;
+  box-shadow: inset 0 0 10px #fff, 0 12px 24px rgba(0, 0, 0, 0.8);
+  transform: none;
 }
 
+/* Control bar styling */
 .controls {
   display: flex;
   justify-content: center;
@@ -56,12 +84,14 @@ body.minecraft::before {
   flex-wrap: wrap;
 }
 
+/* Difficulty selector radio buttons */
 .difficulty-switch label {
   margin: 0 10px;
   font-size: 14px;
   color: #fff;
 }
 
+/* Restart button */
 button {
   padding: 10px 20px;
   font-size: 14px;
@@ -70,5 +100,11 @@ button {
   border-radius: 5px;
   color: white;
   cursor: pointer;
+}
+
+/* Move counter and message text */
+#moves, #message {
+  font-size: 1rem;
+  margin: 10px 0;
 }
 
