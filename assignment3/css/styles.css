@@ -1,10 +1,14 @@
 body.minecraft {
-  background-color: #3c3c3c;
+  background-image: url('minecraftwallpaper.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   font-family: 'Press Start 2P', cursive;
   color: #a8ff60;
   text-align: center;
   padding: 20px;
 }
+
 
 .board {
   display: grid;
