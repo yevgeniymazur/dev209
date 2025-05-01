@@ -12,6 +12,11 @@ let matched = [];
 let moves = 0;
 let gridSize = 4;
 
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('minecraft');
+});
+
 // Shuffle function (Functional programming)
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
