@@ -62,3 +62,8 @@ button {
   color: white;
   cursor: pointer;
 }
+.board, .controls, #message {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 10px;
+}
