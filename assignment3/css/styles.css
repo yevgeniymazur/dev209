@@ -1,4 +1,4 @@
-/* Minecraft theme background */
+/* Global Minecraft Theme */
 body.minecraft {
   background-image: url('../images/minecraftwallpaper.png');
   background-size: cover;
@@ -12,7 +12,7 @@ body.minecraft {
   position: relative;
 }
 
-/* Dark overlay for readability */
+/* Optional dark overlay for readability */
 body.minecraft::before {
   content: "";
   position: fixed;
@@ -24,14 +24,20 @@ body.minecraft::before {
 
 /* Game Title */
 h1 {
-  font-size: 2.5rem;
+  font-size: clamp(24px, 6vw, 48px);
   margin-bottom: 10px;
   color: #a8ff60;
   text-shadow: 2px 2px 4px #000;
   letter-spacing: 2px;
 }
 
-/* Controls layout */
+/* Move counter and game message */
+#moves, #message {
+  font-size: clamp(14px, 2.5vw, 18px);
+  margin: 10px 0;
+}
+
+/* Control bar layout */
 .controls {
   display: flex;
   justify-content: center;
@@ -41,16 +47,17 @@ h1 {
   margin-bottom: 15px;
 }
 
+/* Difficulty selector radio buttons */
 .difficulty-switch label {
   margin: 0 8px;
-  font-size: 12px;
+  font-size: clamp(10px, 3vw, 14px);
   color: #fff;
 }
 
-/* Buttons */
+/* Restart button */
 button {
   padding: 10px 16px;
-  font-size: 12px;
+  font-size: clamp(12px, 3vw, 16px);
   background-color: #4e944f;
   border: none;
   border-radius: 5px;
@@ -58,31 +65,27 @@ button {
   cursor: pointer;
 }
 
-/* Move and status messages */
-#moves, #message {
-  font-size: 1rem;
-  margin: 10px 0;
-}
-
-/* Game board layout */
+/* Game Board Grid */
 .board {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   justify-content: center;
   margin: 0 auto;
-  max-width: 100%;
   padding: 10px;
+
+  /* Smart grid layout: adjusts to fit screen */
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  max-width: 100%;
 }
 
 /* Card styling */
 .card {
-  width: 22vw;
-  max-width: 100px;
+  width: 100%;
   aspect-ratio: 1 / 1;
   background-color: #5c913b;
   border: 4px solid #2e4600;
   border-radius: 8px;
-  font-size: 5vw;
+  font-size: clamp(16px, 5vw, 36px);
   color: transparent;
   display: flex;
   align-items: center;
@@ -99,7 +102,7 @@ button {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
 }
 
-/* Flipped or matched */
+/* Flipped or matched state */
 .card.flipped,
 .card.matched {
   color: #fff;
@@ -107,26 +110,5 @@ button {
   border-color: #3e6f2a;
   box-shadow: inset 0 0 10px #fff, 0 10px 20px rgba(0, 0, 0, 0.8);
   transform: none;
-}
-
-/* Responsive tweaks */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .card {
-    width: 22vw;
-    font-size: 6vw;
-  }
-
-  button {
-    font-size: 12px;
-    padding: 8px 14px;
-  }
-
-  #moves, #message {
-    font-size: 0.9rem;
-  }
 }
 
