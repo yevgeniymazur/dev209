@@ -111,3 +111,27 @@ button {
   box-shadow: inset 0 0 10px #fff, 0 10px 20px rgba(0, 0, 0, 0.8);
   transform: none;
 }
+/* Container to center board and button */
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: fit-content;
+}
+
+/* Game board grid stays the same */
+.board {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Restart button next to board */
+#restart {
+  height: fit-content;
+  align-self: center;
+  margin-top: 10px;
+}
