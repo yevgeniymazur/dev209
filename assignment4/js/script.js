@@ -133,20 +133,25 @@ function checkMatch() {
       stopTimer();
       message.textContent = `🎉 Game Over! You won in ${moves} moves and ${formatTime(secondsElapsed)}.`;
     }
+
+    flipped = [];
+    saveState();
   } else {
-    // ⏱️ IMMEDIATE flip back
     mismatchSound.currentTime = 0;
     mismatchSound.play();
 
-    c1.classList.remove('flipped');
-    c2.classList.remove('flipped');
-    c1.textContent = '';
-    c2.textContent = '';
+    // ⏳ Let second card render visibly before flipping both back
+    setTimeout(() => {
+      c1.classList.remove('flipped');
+      c2.classList.remove('flipped');
+      c1.textContent = '';
+      c2.textContent = '';
+      flipped = [];
+      saveState();
+    }, 300);
   }
-
-  flipped = [];
-  saveState();
 }
+
 
 
 function resetGame() {
