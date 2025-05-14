@@ -117,8 +117,11 @@ button {
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
-  margin-top: 20px;
+  margin: 0 auto;             /* Center horizontally */
+  padding: 20px;
+  max-width: fit-content;     /* Only as wide as content */
 }
+
 
 .board {
   flex-shrink: 0;
