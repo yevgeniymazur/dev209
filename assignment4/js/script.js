@@ -95,13 +95,30 @@ function createBoard() {
 }
 
 function flipCard(e) {
-  const card = e.target;
-  const index = card.dataset.index;
+  const clickedCard = e.target;
+  const index = clickedCard.dataset.index;
 
-  if (flipped.includes(index) || card.classList.contains('matched')) return;
+  // ✅ If two are already flipped
+  if (flipped.length === 2) {
+    const [i1, i2] = flipped;
+    const c1 = board.children[i1];
+    const c2 = board.children[i2];
 
-  card.classList.add('flipped');
-  card.textContent = card.dataset.symbol;
+    // Flip both back
+    c1.classList.remove('flipped');
+    c2.classList.remove('flipped');
+    c1.textContent = '';
+    c2.textContent = '';
+    flipped = [];
+    saveState();
+  }
+
+  // ❌ If it's the same card or already matched, do nothing
+  if (flipped.includes(index) || clickedCard.classList.contains('matched')) return;
+
+  // ✅ Flip this card
+  clickedCard.classList.add('flipped');
+  clickedCard.textContent = clickedCard.dataset.symbol;
   flipSound.currentTime = 0;
   flipSound.play();
 
@@ -116,6 +133,7 @@ function flipCard(e) {
 
   saveState();
 }
+
 
 function checkMatch() {
   const [i1, i2] = flipped;
