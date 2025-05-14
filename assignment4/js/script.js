@@ -15,6 +15,7 @@ const mismatchSound = new Audio('sounds/mismatch.mp3');
 const symbolBank = [/* same list */ '⛏️','🪓','🧱','🔥','🌲','🟩','💎','🐷','👾','🌋','🧊','🍖','🌑','🪨','📦','🧠','🕹️','🐺','🪵','⚒️','🧟','👻','🌾','🪙','🐔','🎮','📡','💣','🔩','🧪','🧬','🧤'];
 
 // Game variables
+let lockBoard = false;
 let cards = [];
 let flipped = [];
 let matched = [];
@@ -95,28 +96,13 @@ function createBoard() {
 }
 
 function flipCard(e) {
+  if (lockBoard) return;
+
   const clickedCard = e.target;
   const index = clickedCard.dataset.index;
 
-  // ✅ If two are already flipped
-  if (flipped.length === 2) {
-    const [i1, i2] = flipped;
-    const c1 = board.children[i1];
-    const c2 = board.children[i2];
-
-    // Flip both back
-    c1.classList.remove('flipped');
-    c2.classList.remove('flipped');
-    c1.textContent = '';
-    c2.textContent = '';
-    flipped = [];
-    saveState();
-  }
-
-  // ❌ If it's the same card or already matched, do nothing
   if (flipped.includes(index) || clickedCard.classList.contains('matched')) return;
 
-  // ✅ Flip this card
   clickedCard.classList.add('flipped');
   clickedCard.textContent = clickedCard.dataset.symbol;
   flipSound.currentTime = 0;
@@ -128,6 +114,7 @@ function flipCard(e) {
     moves++;
     movesDisplay.textContent = `Moves: ${moves}`;
     incrementGlobalMoves();
+    lockBoard = true;
     checkMatch();
   }
 
@@ -153,6 +140,7 @@ function checkMatch() {
     }
 
     flipped = [];
+    lockBoard = false;
     saveState();
   } else {
     mismatchSound.currentTime = 0;
@@ -164,10 +152,12 @@ function checkMatch() {
       c1.textContent = '';
       c2.textContent = '';
       flipped = [];
+      lockBoard = false;
       saveState();
-    }, 800); // ⏱️ Longer display
+    }, 800);
   }
 }
+
 
 
 
