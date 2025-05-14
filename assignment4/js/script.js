@@ -24,14 +24,10 @@ let gridSize = 4;
 let timerInterval = null;
 let secondsElapsed = 0;
 
-// Unique session per tab
-let sessionKey = sessionStorage.getItem('sessionKey');
-if (!sessionKey) {
-  sessionKey = `game-state-${Date.now()}`;
-  sessionStorage.setItem('sessionKey', sessionKey);
-}
+// ✅ Fixed session key so it persists on refresh in same tab
+let sessionKey = 'game-state';
 
-// Global total move tracker
+// Track total moves across tabs
 function incrementGlobalMoves() {
   let total = parseInt(localStorage.getItem('totalMoves') || '0');
   localStorage.setItem('totalMoves', total + 1);
@@ -43,7 +39,6 @@ window.addEventListener('storage', (e) => {
   }
 });
 
-// Utility
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
 function saveState() {
@@ -210,17 +205,13 @@ function formatTime(seconds) {
 restartBtn.addEventListener('click', resetGame);
 difficultyRadios.forEach(radio => radio.addEventListener('change', resetGame));
 
-// 🔁 Restore state or start fresh
-if (loadState()) {
-  // Only create board if cards exist
-  if (cards && cards.length > 0) {
-    createBoard();
-    movesDisplay.textContent = `Moves: ${moves}`;
-    updateTimerDisplay();
-    startTimer();
-  } else {
-    resetGame();
-  }
+// 🔁 Restore game if saved
+if (loadState() && cards.length > 0) {
+  createBoard();
+  movesDisplay.textContent = `Moves: ${moves}`;
+  updateTimerDisplay();
+  startTimer();
 } else {
   resetGame();
 }
+
