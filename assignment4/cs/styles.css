@@ -1,1 +1,113 @@
+/* Global Minecraft Theme */
+body.minecraft {
+  background-image: url('../images/minecraftwallpaper.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Press Start 2P', cursive;
+  color: #a8ff60;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  position: relative;
+}
 
+/* Dark overlay for readability */
+body.minecraft::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+/* Game Title */
+h1 {
+  font-size: clamp(24px, 6vw, 48px);
+  margin-bottom: 10px;
+  color: #a8ff60;
+  text-shadow: 2px 2px 4px #000;
+  letter-spacing: 2px;
+}
+
+/* Move counter and game message */
+#moves, #message {
+  font-size: clamp(14px, 2.5vw, 18px);
+  margin: 10px 0;
+}
+
+/* Control bar layout */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+/* Difficulty selector radio buttons */
+.difficulty-switch label {
+  margin: 0 8px;
+  font-size: clamp(10px, 3vw, 14px);
+  color: #fff;
+}
+
+/* Restart button */
+button {
+  padding: 10px 16px;
+  font-size: clamp(12px, 3vw, 16px);
+  background-color: #4e944f;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Game Board Grid */
+.board {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 100%;
+
+  /* Smart column layout */
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+}
+
+/* Card styling */
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #5c913b;
+  border: 4px solid #2e4600;
+  border-radius: 8px;
+  font-size: clamp(16px, 6vw, 36px);
+  color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  transform: translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  image-rendering: pixelated;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.04);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Flipped or matched state */
+.card.flipped,
+.card.matched {
+  color: #fff;
+  background-color: #84c75d;
+  border-color: #3e6f2a;
+  box-shadow: inset 0 0 10px #fff, 0 10px 20px rgba(0, 0, 0, 0.8);
+  transform: none;
+}
