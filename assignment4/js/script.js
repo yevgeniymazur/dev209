@@ -12,7 +12,7 @@ const matchSound = new Audio('sounds/match.mp3');
 const mismatchSound = new Audio('sounds/mismatch.mp3');
 
 // Symbols
-const symbolBank = [/* same list */ '⛏️','🪓','🧱','🔥','🌲','🟩','💎','🐷','👾','🌋','🧊','🍖','🌑','🪨','📦','🧠','🕹️','🐺','🪵','⚒️','🧟','👻','🌾','🪙','🐔','🎮','📡','💣','🔩','🧪','🧬','🧤'];
+const symbolBank = ['⛏️','🪓','🧱','🔥','🌲','🟩','💎','🐷','👾','🌋','🧊','🍖','🌑','🪨','📦','🧠','🕹️','🐺','🪵','⚒️','🧟','👻','🌾','🪙','🐔','🎮','📡','💣','🔩','🧪','🧬','🧤'];
 
 // Game variables
 let lockBoard = false;
@@ -23,23 +23,27 @@ let moves = 0;
 let gridSize = 4;
 let timerInterval = null;
 let secondsElapsed = 0;
-let sessionKey = `game-state-${Date.now()}`; // Unique per tab
-sessionStorage.setItem('sessionKey', sessionKey);
 
-// Total move counter (localStorage across all tabs)
+// Unique session per tab
+let sessionKey = sessionStorage.getItem('sessionKey');
+if (!sessionKey) {
+  sessionKey = `game-state-${Date.now()}`;
+  sessionStorage.setItem('sessionKey', sessionKey);
+}
+
+// Global total move tracker
 function incrementGlobalMoves() {
   let total = parseInt(localStorage.getItem('totalMoves') || '0');
   localStorage.setItem('totalMoves', total + 1);
 }
 
-// Global move sync listener
 window.addEventListener('storage', (e) => {
   if (e.key === 'totalMoves') {
     console.log(`🔁 Total moves across tabs: ${e.newValue}`);
   }
 });
 
-// Pure shuffle function
+// Utility
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
 function saveState() {
@@ -83,7 +87,7 @@ function createBoard() {
     if (matched.includes(symbol)) {
       card.classList.add('matched');
       card.textContent = symbol;
-    } else if (flipped.includes(index.toString())) {
+    } else if (flipped.includes(index) || flipped.includes(index.toString())) {
       card.classList.add('flipped');
       card.textContent = symbol;
     } else {
@@ -121,7 +125,6 @@ function flipCard(e) {
   saveState();
 }
 
-
 function checkMatch() {
   const [i1, i2] = flipped;
   const c1 = board.children[i1];
@@ -157,9 +160,6 @@ function checkMatch() {
     }, 800);
   }
 }
-
-
-
 
 function resetGame() {
   flipped = [];
@@ -211,11 +211,16 @@ restartBtn.addEventListener('click', resetGame);
 difficultyRadios.forEach(radio => radio.addEventListener('change', resetGame));
 
 // 🔁 Restore state or start fresh
-if (!loadState()) {
-  resetGame();
+if (loadState()) {
+  // Only create board if cards exist
+  if (cards && cards.length > 0) {
+    createBoard();
+    movesDisplay.textContent = `Moves: ${moves}`;
+    updateTimerDisplay();
+    startTimer();
+  } else {
+    resetGame();
+  }
 } else {
-  createBoard();
-  movesDisplay.textContent = `Moves: ${moves}`;
-  updateTimerDisplay();
-  startTimer();
+  resetGame();
 }
