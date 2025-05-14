@@ -134,19 +134,20 @@ function checkMatch() {
       message.textContent = `🎉 Game Over! You won in ${moves} moves and ${formatTime(secondsElapsed)}.`;
     }
   } else {
+    // ⏱️ IMMEDIATE flip back
     mismatchSound.currentTime = 0;
     mismatchSound.play();
-    setTimeout(() => {
-      c1.classList.remove('flipped');
-      c2.classList.remove('flipped');
-      c1.textContent = '';
-      c2.textContent = '';
-    }, 1000);
+
+    c1.classList.remove('flipped');
+    c2.classList.remove('flipped');
+    c1.textContent = '';
+    c2.textContent = '';
   }
 
   flipped = [];
   saveState();
 }
+
 
 function resetGame() {
   flipped = [];
