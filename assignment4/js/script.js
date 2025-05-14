@@ -158,7 +158,6 @@ function checkMatch() {
     mismatchSound.currentTime = 0;
     mismatchSound.play();
 
-    // ⏳ Let second card render visibly before flipping both back
     setTimeout(() => {
       c1.classList.remove('flipped');
       c2.classList.remove('flipped');
@@ -166,7 +165,7 @@ function checkMatch() {
       c2.textContent = '';
       flipped = [];
       saveState();
-    }, 300);
+    }, 800); // ⏱️ Longer display
   }
 }
 
