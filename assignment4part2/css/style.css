@@ -369,3 +369,38 @@ p#todoError {
   border-radius: 5px;
   display: none;
 }
+/* Todo item styling */
+.todo-item {
+  background-color: #ec8b68;
+  color: #fff;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Buttons grouped in a row */
+.todo-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.todo-actions button {
+  flex: 1;
+  padding: 8px;
+  font-size: 12px;
+  background-color: #403c3b;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.todo-actions button:hover {
+  background-color: #2e2b2a;
+}
