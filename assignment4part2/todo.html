@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="page">
+    <h1>My Todo List</h1>
+
+    <button id="logoutBtn">Logout</button>
+
+    <h2>Add New Todo</h2>
+    <form id="todoForm">
+      <p><input type="text" id="title" placeholder="Title" required></p>
+      <p><input type="text" id="description" placeholder="Description" required></p>
+      <p><button type="submit">Add Todo</button></p>
+    </form>
+
+    <h2>Your Todos</h2>
+    <ul id="todoList">
+      <!-- Todos will be inserted here dynamically -->
+    </ul>
+
+    <p id="todoError" style="display:none; color: red;">Error loading or saving todos.</p>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/todo.js"></script>
+</body>
+</html>
