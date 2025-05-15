@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register - Todo App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="page">
+    <h1>Register</h1>
+
+    <form id="registerForm">
+      <p><input type="text" id="username" placeholder="Username" required></p>
+      <p><input type="password" id="password" placeholder="Password" required></p>
+      <p><button type="submit">Register</button></p>
+    </form>
+
+    <p>Already have an account? <a href="index.html">Login here</a></p>
+    
+    <p id="registerError" style="display:none; color: red;">Registration failed. Try a different username.</p>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
