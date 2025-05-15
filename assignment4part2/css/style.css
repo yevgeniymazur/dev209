@@ -435,3 +435,43 @@ p#todoError {
 ul {
   padding: 0;
 }
+#todoList {
+  padding: 0;
+}
+
+/* Style the todo item container */
+#todoList li {
+  background-color: #ec8b68;
+  color: #fff;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  font-size: 18px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Target any row of buttons inside each todo item */
+#todoList li .button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Button styling */
+#todoList li button {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  background-color: #403c3b;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#todoList li button:hover {
+  background-color: #2e2b2a;
+}
