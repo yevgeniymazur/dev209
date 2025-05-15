@@ -8,26 +8,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body class="minecraft">
-<h1>Minecraft Memory Game</h1>
-<p id="moves">Moves: 0</p>
-<p id="timer">Time: 00:00</p>
+  <h1>Minecraft Memory Game</h1>
+  <p id="moves">Moves: 0</p>
+  <p id="timer">Time: 00:00</p>
 
-<div class="controls">
-  <div class="difficulty-switch">
-    <label><input type="radio" name="difficulty" value="4" checked> 4x4</label>
-    <label><input type="radio" name="difficulty" value="6"> 6x6</label>
-    <label><input type="radio" name="difficulty" value="8"> 8x8</label>
+  <div class="controls">
+    <div class="difficulty-switch">
+      <label><input type="radio" name="difficulty" value="4" checked> 4x4</label>
+      <label><input type="radio" name="difficulty" value="6"> 6x6</label>
+      <label><input type="radio" name="difficulty" value="8"> 8x8</label>
+    </div>
   </div>
-</div>
 
-<div class="game-container">
-  <div id="game-board" class="board"></div>
-  <button id="restart">Restart Game</button>
-</div>
+  <!-- 🔲 Game layout: high score | game board | reset -->
+  <div class="game-layout">
+    <!-- ⬅️ High score panel -->
+    <div class="side-panel" id="highscore-panel">
+      <p><strong>Best Time:</strong></p>
+      <p id="best-time">--:--</p>
+      <p><strong>Best Moves:</strong></p>
+      <p id="best-moves">--</p>
+    </div>
 
+    <!-- 🟩 Game board grid -->
+    <div id="game-board" class="board"></div>
 
+    <!-- 🔁 Restart button -->
+    <div class="side-panel">
+      <button id="restart">Restart Game</button>
+    </div>
+  </div>
 
-  <div id="game-board" class="board"></div>
   <p id="message"></p>
 
   <script src="js/script.js"></script>
