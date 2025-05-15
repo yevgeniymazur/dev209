@@ -423,3 +423,24 @@ p#todoError {
 .button-group .delete:hover {
   background-color: #B71C1C;
 }
+.button-group {
+  display: flex;
+  flex-wrap: nowrap;         /* prevent wrapping to next line */
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;               /* ensure buttons take full width of todo item */
+}
+
+.button-group button {
+  flex: 1;                   /* allow buttons to grow equally */
+  min-width: 0;              /* override any min-width forcing overflow */
+  padding: 8px 12px;
+  font-size: 13px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-align: center;
+  white-space: nowrap;       /* prevent text wrapping */
+}
