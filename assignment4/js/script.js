@@ -234,7 +234,6 @@ function formatTime(seconds) {
 // Event listeners
 restartBtn.addEventListener('click', resetGame);
 difficultyRadios.forEach(radio => radio.addEventListener('change', resetGame));
-
 // 🔁 Restore game if saved
 if (loadState() && cards.length > 0) {
   createBoard();
@@ -245,13 +244,6 @@ if (loadState() && cards.length > 0) {
   resetGame();
 }
 
-if (loadState() && cards.length > 0) {
-  createBoard();
-  movesDisplay.textContent = `Moves: ${moves}`;
-  updateTimerDisplay();
-  startTimer();
-} else {
-  resetGame();
-}
+// 🏆 Show best time / moves
+updateHighScoreDisplay();
 
-updateHighScoreDisplay(); // ← Add this here
