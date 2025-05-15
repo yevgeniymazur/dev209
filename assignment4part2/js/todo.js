@@ -63,31 +63,41 @@ async function loadTodos() {
 
 // Render a single todo
 function renderTodo(todo) {
+function renderTodo(todo) {
   const li = document.createElement('li');
-  li.textContent = `${todo.title} - ${todo.description}`;
+  li.classList.add('todo-item'); // Apply CSS styling
   if (todo.completed) li.classList.add('complete');
 
-  // Mark complete/incomplete
+  const text = document.createElement('div');
+  text.textContent = `${todo.title} - ${todo.description}`;
+
+  // Create buttons
   const toggleBtn = document.createElement('button');
   toggleBtn.textContent = todo.completed ? 'Undo' : 'Complete';
   toggleBtn.addEventListener('click', () => toggleComplete(todo));
 
-  // Edit
   const editBtn = document.createElement('button');
   editBtn.textContent = 'Edit';
   editBtn.addEventListener('click', () => editTodoPrompt(todo));
 
-  // Delete
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete';
   deleteBtn.addEventListener('click', () => deleteTodo(todo._id));
 
-  li.appendChild(toggleBtn);
-  li.appendChild(editBtn);
-  li.appendChild(deleteBtn);
+  // Group buttons in a flex container
+  const buttonGroup = document.createElement('div');
+  buttonGroup.classList.add('button-group');
+  buttonGroup.appendChild(toggleBtn);
+  buttonGroup.appendChild(editBtn);
+  buttonGroup.appendChild(deleteBtn);
+
+  // Add content to the list item
+  li.appendChild(text);
+  li.appendChild(buttonGroup);
 
   todoList.appendChild(li);
 }
+
 
 async function toggleComplete(todo) {
   try {
