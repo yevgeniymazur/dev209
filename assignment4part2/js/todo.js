@@ -76,18 +76,21 @@ function renderTodo(todo) {
   // COMPLETE / UNDO
   const toggleBtn = document.createElement('button');
   toggleBtn.textContent = todo.completed ? 'Undo' : 'Complete';
+  toggleBtn.classList.add('complete'); // ✅ Add this line
   toggleBtn.addEventListener('click', () => toggleComplete(todo));
   buttonGroup.appendChild(toggleBtn);
 
   // EDIT
   const editBtn = document.createElement('button');
   editBtn.textContent = 'Edit';
+  editBtn.classList.add('edit'); // ✅ Add this line
   editBtn.addEventListener('click', () => editTodoPrompt(todo));
   buttonGroup.appendChild(editBtn);
 
   // DELETE
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete';
+  deleteBtn.classList.add('delete'); // ✅ Add this line
   deleteBtn.addEventListener('click', () => deleteTodo(todo._id));
   buttonGroup.appendChild(deleteBtn);
 
@@ -95,6 +98,7 @@ function renderTodo(todo) {
   li.appendChild(buttonGroup);
   todoList.appendChild(li);
 }
+
 
 
 
