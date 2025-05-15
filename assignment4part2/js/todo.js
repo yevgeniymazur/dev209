@@ -63,40 +63,39 @@ async function loadTodos() {
 
 // Render a single todo
 function renderTodo(todo) {
-function renderTodo(todo) {
   const li = document.createElement('li');
-  li.classList.add('todo-item'); // Apply CSS styling
-  if (todo.completed) li.classList.add('complete');
+  li.className = 'todo-item';
 
   const text = document.createElement('div');
+  text.className = 'todo-text';
   text.textContent = `${todo.title} - ${todo.description}`;
 
-  // Create buttons
+  const buttonGroup = document.createElement('div');
+  buttonGroup.className = 'button-group';
+
+  // COMPLETE / UNDO
   const toggleBtn = document.createElement('button');
   toggleBtn.textContent = todo.completed ? 'Undo' : 'Complete';
   toggleBtn.addEventListener('click', () => toggleComplete(todo));
+  buttonGroup.appendChild(toggleBtn);
 
+  // EDIT
   const editBtn = document.createElement('button');
   editBtn.textContent = 'Edit';
   editBtn.addEventListener('click', () => editTodoPrompt(todo));
+  buttonGroup.appendChild(editBtn);
 
+  // DELETE
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete';
   deleteBtn.addEventListener('click', () => deleteTodo(todo._id));
-
-  // Group buttons in a flex container
-  const buttonGroup = document.createElement('div');
-  buttonGroup.classList.add('button-group');
-  buttonGroup.appendChild(toggleBtn);
-  buttonGroup.appendChild(editBtn);
   buttonGroup.appendChild(deleteBtn);
 
-  // Add content to the list item
   li.appendChild(text);
   li.appendChild(buttonGroup);
-
   todoList.appendChild(li);
 }
+
 
 
 async function toggleComplete(todo) {
