@@ -389,19 +389,12 @@ p#todoError {
   word-wrap: break-word;
 }
 
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  width: 100%;
-}
-
 .button-group button {
   flex: 1;
   min-width: 100px;
   padding: 8px 12px;
   font-size: 13px;
-  background-color: #403c3b;
+  background-color: #800000; /* classic maroon */
   color: white;
   border: none;
   border-radius: 4px;
@@ -410,21 +403,5 @@ p#todoError {
 }
 
 .button-group button:hover {
-  background-color: #2e2b2a;
-}
-.button-group button {
-  flex: 1;
-  min-width: 100px;
-  padding: 8px 12px;
-  font-size: 13px;
-  background-color: #fa7f5e; /* Brighter orange */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.button-group button:hover {
-  background-color: #e25d3f; /* Slightly darker on hover */
+  background-color: #a12626; /* brighter maroon on hover */
 }
