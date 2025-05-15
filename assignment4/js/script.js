@@ -158,26 +158,33 @@ function checkMatch() {
   }
 }
 function saveHighScore() {
-  const bestTime = parseInt(localStorage.getItem('bestTime') || '0');
-  const bestMoves = parseInt(localStorage.getItem('bestMoves') || '0');
+  const timeKey = `bestTime-${gridSize}`;
+  const movesKey = `bestMoves-${gridSize}`;
+
+  const bestTime = parseInt(localStorage.getItem(timeKey) || '0');
+  const bestMoves = parseInt(localStorage.getItem(movesKey) || '0');
 
   const newBestTime = bestTime === 0 || secondsElapsed < bestTime;
   const newBestMoves = bestMoves === 0 || moves < bestMoves;
 
   if (newBestTime) {
-    localStorage.setItem('bestTime', secondsElapsed);
+    localStorage.setItem(timeKey, secondsElapsed);
   }
 
   if (newBestMoves) {
-    localStorage.setItem('bestMoves', moves);
+    localStorage.setItem(movesKey, moves);
   }
 
   updateHighScoreDisplay();
 }
 
+
 function updateHighScoreDisplay() {
-  const bestTime = parseInt(localStorage.getItem('bestTime') || '0');
-  const bestMoves = parseInt(localStorage.getItem('bestMoves') || '0');
+  const timeKey = `bestTime-${gridSize}`;
+  const movesKey = `bestMoves-${gridSize}`;
+
+  const bestTime = parseInt(localStorage.getItem(timeKey) || '0');
+  const bestMoves = parseInt(localStorage.getItem(movesKey) || '0');
 
   document.getElementById('best-time').textContent = bestTime
     ? formatTime(bestTime)
@@ -185,6 +192,7 @@ function updateHighScoreDisplay() {
 
   document.getElementById('best-moves').textContent = bestMoves || '--';
 }
+
 
 function resetGame() {
   flipped = [];
@@ -233,7 +241,13 @@ function formatTime(seconds) {
 
 // Event listeners
 restartBtn.addEventListener('click', resetGame);
-difficultyRadios.forEach(radio => radio.addEventListener('change', resetGame));
+difficultyRadios.forEach(radio =>
+  radio.addEventListener('change', () => {
+    resetGame();
+    updateHighScoreDisplay(); // 🏆 update based on new grid size
+  })
+);
+
 // 🔁 Restore game if saved
 if (loadState() && cards.length > 0) {
   createBoard();
