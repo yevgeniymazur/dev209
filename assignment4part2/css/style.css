@@ -374,104 +374,41 @@ p#todoError {
   background-color: #ec8b68;
   color: #fff;
   padding: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 16px;
+  list-style: none;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
 }
 
-/* Buttons grouped in a row */
-.todo-actions {
+.todo-text {
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.button-group {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 8px;
+  width: 100%;
 }
 
-.todo-actions button {
+.button-group button {
   flex: 1;
-  padding: 8px;
-  font-size: 12px;
+  min-width: 100px;
+  padding: 8px 12px;
+  font-size: 13px;
   background-color: #403c3b;
+  color: white;
   border: none;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.2s ease;
-}
-
-.todo-actions button:hover {
-  background-color: #2e2b2a;
-}
-/* Make list items look like cards */
-#todoList li {
-  background-color: #ec8b68;
-  color: #fff;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-  font-size: 18px;
-  list-style: none;
-}
-
-/* Space buttons and line them up in a row */
-#todoList li button {
-  display: inline-block;
-  margin: 5px 4px 0 0;
-  padding: 6px 10px;
-  background-color: #403c3b;
-  border: none;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background 0.2s ease;
-}
-
-#todoList li button:hover {
-  background-color: #2e2b2a;
-}
-ul {
-  padding: 0;
-}
-#todoList {
-  padding: 0;
-}
-
-/* Style the todo item container */
-#todoList li {
-  background-color: #ec8b68;
-  color: #fff;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-  font-size: 18px;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Target any row of buttons inside each todo item */
-#todoList li .button-group {
-  display: flex;
-  gap: 10px;
-}
-
-/* Button styling */
-#todoList li button {
-  flex: 1;
-  padding: 8px;
-  font-size: 14px;
-  background-color: #403c3b;
-  border: none;
-  color: #fff;
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
-#todoList li button:hover {
+.button-group button:hover {
   background-color: #2e2b2a;
 }
