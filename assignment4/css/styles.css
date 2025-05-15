@@ -151,3 +151,37 @@ button {
   }
 }
 
+/* Layout wrapper for grid + panels */
+.game-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px auto;
+  max-width: fit-content;
+}
+
+/* Side panels for left/right */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 120px;
+  padding-top: 10px;
+  color: white;
+  font-size: 12px;
+}
+
+/* Responsive stack on small screens */
+@media (max-width: 600px) {
+  .game-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side-panel {
+    min-width: auto;
+    margin-top: 10px;
+  }
+}
