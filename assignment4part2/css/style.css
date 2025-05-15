@@ -404,3 +404,34 @@ p#todoError {
 .todo-actions button:hover {
   background-color: #2e2b2a;
 }
+/* Make list items look like cards */
+#todoList li {
+  background-color: #ec8b68;
+  color: #fff;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  font-size: 18px;
+  list-style: none;
+}
+
+/* Space buttons and line them up in a row */
+#todoList li button {
+  display: inline-block;
+  margin: 5px 4px 0 0;
+  padding: 6px 10px;
+  background-color: #403c3b;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s ease;
+}
+
+#todoList li button:hover {
+  background-color: #2e2b2a;
+}
+ul {
+  padding: 0;
+}
