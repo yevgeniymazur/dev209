@@ -133,9 +133,11 @@ function checkMatch() {
     matchSound.play();
 
     if (matched.length === cards.length / 2) {
-      stopTimer();
-      message.textContent = `🎉 Game Over! You won in ${moves} moves and ${formatTime(secondsElapsed)}.`;
-    }
+  stopTimer();
+  message.textContent = `🎉 Game Over! You won in ${moves} moves and ${formatTime(secondsElapsed)}.`;
+  saveHighScore(); // 🏆 Save best score
+}
+
 
     flipped = [];
     lockBoard = false;
@@ -154,6 +156,34 @@ function checkMatch() {
       saveState();
     }, 800);
   }
+}
+function saveHighScore() {
+  const bestTime = parseInt(localStorage.getItem('bestTime') || '0');
+  const bestMoves = parseInt(localStorage.getItem('bestMoves') || '0');
+
+  const newBestTime = bestTime === 0 || secondsElapsed < bestTime;
+  const newBestMoves = bestMoves === 0 || moves < bestMoves;
+
+  if (newBestTime) {
+    localStorage.setItem('bestTime', secondsElapsed);
+  }
+
+  if (newBestMoves) {
+    localStorage.setItem('bestMoves', moves);
+  }
+
+  updateHighScoreDisplay();
+}
+
+function updateHighScoreDisplay() {
+  const bestTime = parseInt(localStorage.getItem('bestTime') || '0');
+  const bestMoves = parseInt(localStorage.getItem('bestMoves') || '0');
+
+  document.getElementById('best-time').textContent = bestTime
+    ? formatTime(bestTime)
+    : '--:--';
+
+  document.getElementById('best-moves').textContent = bestMoves || '--';
 }
 
 function resetGame() {
@@ -215,3 +245,13 @@ if (loadState() && cards.length > 0) {
   resetGame();
 }
 
+if (loadState() && cards.length > 0) {
+  createBoard();
+  movesDisplay.textContent = `Moves: ${moves}`;
+  updateTimerDisplay();
+  startTimer();
+} else {
+  resetGame();
+}
+
+updateHighScoreDisplay(); // ← Add this here
