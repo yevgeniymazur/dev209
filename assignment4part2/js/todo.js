@@ -76,22 +76,22 @@ function renderTodo(todo) {
   // COMPLETE / UNDO
   const toggleBtn = document.createElement('button');
   toggleBtn.textContent = todo.completed ? 'Undo' : 'Complete';
-  toggleBtn.classList.add('complete'); // ✅ Add this line
+  toggleBtn.classList.add('complete');
   toggleBtn.addEventListener('click', () => toggleComplete(todo));
   buttonGroup.appendChild(toggleBtn);
 
   // EDIT
   const editBtn = document.createElement('button');
   editBtn.textContent = 'Edit';
-  editBtn.classList.add('edit'); // ✅ Add this line
+  editBtn.classList.add('edit');
   editBtn.addEventListener('click', () => editTodoPrompt(todo));
   buttonGroup.appendChild(editBtn);
 
   // DELETE
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete';
-  deleteBtn.classList.add('delete'); // ✅ Add this line
-  deleteBtn.addEventListener('click', () => deleteTodo(todo._id));
+  deleteBtn.classList.add('delete');
+  deleteBtn.addEventListener('click', () => deleteTodo(todo.id)); // ✅ FIXED
   buttonGroup.appendChild(deleteBtn);
 
   li.appendChild(text);
@@ -99,12 +99,9 @@ function renderTodo(todo) {
   todoList.appendChild(li);
 }
 
-
-
-
 async function toggleComplete(todo) {
   try {
-    await fetch(`${API_URL}/todos/${todo._id}`, {
+    await fetch(`${API_URL}/todos/${todo.id}`, { // ✅ FIXED
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -136,7 +133,7 @@ function editTodoPrompt(todo) {
   const newTitle = prompt('Edit title:', todo.title);
   const newDesc = prompt('Edit description:', todo.description);
   if (newTitle !== null && newDesc !== null) {
-    updateTodo(todo._id, newTitle.trim(), newDesc.trim(), todo.completed);
+    updateTodo(todo.id, newTitle.trim(), newDesc.trim(), todo.completed); // ✅ FIXED
   }
 }
 
