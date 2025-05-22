@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Oswald', sans-serif;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+#page {
+  background-color: #403c3b;
+  padding: 40px 20px;
+  max-width: 480px;
+  width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.15em;
+  margin: 20px 0;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+form p {
+  margin: 10px 0;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ec8b68;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #d7666b;
+}
+
+#logoutBtn {
+  background-color: #6cc0ac;
+  margin: 10px 0 20px 0;
+}
+
+#todoList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.todo-item {
+  background-color: #ec8b68;
+  color: black;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%; /* Allow full width inside container */
+  box-sizing: border-box;
+}
+.todo-text {
+  font-weight: bold;
+  color: black;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row; /* Horizontal stacking */
+  justify-content: space-between;
+  gap: 10px;
+}
+.button-group button {
+  flex: 1;
+  min-width: 80px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+/* Layout buttons in a row, prevent stacking */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: nowrap; /* Prevent vertical wrapping */
+  width: 100%;
+}
+/* Make each button wide enough */
+.button-group button {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+}
+.button-group .complete {
+  background-color: #4CAF50;
+}
+.button-group .complete:hover {
+  background-color: #388E3C;
+}
+
+.button-group .edit {
+  background-color: #1976D2;
+}
+.button-group .edit:hover {
+  background-color: #0D47A1;
+}
+
+.button-group .delete {
+  background-color: #D32F2F;
+}
+.button-group .delete:hover {
+  background-color: #B71C1C;
+}
+
+#error,
+#loginError,
+#registerError,
+#todoError {
+  background-color: #900;
+  color: #ffcccc;
+  padding: 10px;
+  margin: 15px 0;
+  text-align: center;
+  border-radius: 6px;
+  display: none;
+}
+#page {
+  background-color: #403c3b;
+  padding: 40px 40px;
+  max-width: 800px;  /* wider layout */
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  margin-top: 40px;
+}
+#page {
+  max-width: 560px; /* increased from 480px */
+}
