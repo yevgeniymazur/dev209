@@ -13,12 +13,13 @@ body {
 
 #page {
   background-color: #403c3b;
-  padding: 40px 20px;
-  max-width: 480px;
-  width: 90%;
+  padding: 40px 40px;
+  max-width: 560px;
+  width: 100%;
   border-radius: 12px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
+  margin-top: 40px;
 }
 
 h1, h2 {
@@ -27,10 +28,6 @@ h1, h2 {
   letter-spacing: 0.15em;
   margin: 20px 0;
   text-transform: uppercase;
-}
-
-h2 {
-  font-size: 18px;
 }
 
 form p {
@@ -85,9 +82,10 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%; /* Allow full width inside container */
+  width: 100%;
   box-sizing: border-box;
 }
+
 .todo-text {
   font-weight: bold;
   color: black;
@@ -97,36 +95,12 @@ button:hover {
 
 .button-group {
   display: flex;
-  flex-direction: row; /* Horizontal stacking */
   justify-content: space-between;
   gap: 10px;
-}
-.button-group button {
-  flex: 1;
-  min-width: 80px;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  color: white;
-}
-.button-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 10px;
+  flex-wrap: nowrap;
   width: 100%;
 }
-/* Layout buttons in a row, prevent stacking */
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: nowrap; /* Prevent vertical wrapping */
-  width: 100%;
-}
-/* Make each button wide enough */
+
 .button-group button {
   flex: 1;
   min-width: 100px;
@@ -139,6 +113,7 @@ button:hover {
   text-align: center;
   white-space: nowrap;
 }
+
 .button-group .complete {
   background-color: #4CAF50;
 }
@@ -158,30 +133,4 @@ button:hover {
 }
 .button-group .delete:hover {
   background-color: #B71C1C;
-}
-
-#error,
-#loginError,
-#registerError,
-#todoError {
-  background-color: #900;
-  color: #ffcccc;
-  padding: 10px;
-  margin: 15px 0;
-  text-align: center;
-  border-radius: 6px;
-  display: none;
-}
-#page {
-  background-color: #403c3b;
-  padding: 40px 40px;
-  max-width: 800px;  /* wider layout */
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-  box-sizing: border-box;
-  margin-top: 40px;
-}
-#page {
-  max-width: 560px; /* increased from 480px */
 }
