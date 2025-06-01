@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { setCookie } from '../utils';
 
-export default function Register({ onRegister }) {
+export default function Register({ onSuccess, onToggle }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
@@ -17,10 +16,8 @@ export default function Register({ onRegister }) {
         body: JSON.stringify({ username, password }),
       });
 
-      if (!res.ok) throw new Error('Register failed');
-      const data = await res.json();
-      setCookie('authToken', data.token, 1);
-      onRegister();
+      if (!res.ok) throw new Error('Registration failed');
+      onSuccess(); // switches back to login screen
     } catch {
       setError(true);
     }
@@ -29,7 +26,7 @@ export default function Register({ onRegister }) {
   return (
     <form onSubmit={handleRegister}>
       <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>Error registering user</p>}
+      {error && <p style={{ color: 'red' }}>Registration failed</p>}
       <input
         type="text"
         placeholder="Username"
@@ -45,6 +42,17 @@ export default function Register({ onRegister }) {
         onChange={e => setPassword(e.target.value)}
       />
       <button type="submit">Register</button>
+
+      <p style={{ marginTop: '10px' }}>
+        Already have an account?{' '}
+        <button
+          type="button"
+          onClick={onToggle}
+          style={{ textDecoration: 'underline', background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}
+        >
+          Login
+        </button>
+      </p>
     </form>
   );
 }
