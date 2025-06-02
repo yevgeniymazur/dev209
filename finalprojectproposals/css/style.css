@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-color: #f7f7f7;
 }
+/* Make page fill full height and allow footer to stay at bottom */
 html, body {
   height: 100%;
   margin: 0;
@@ -11,6 +12,7 @@ html, body {
   flex-direction: column;
 }
 
+/* This lets main content grow and push the footer down */
 main {
   flex: 1;
 }
