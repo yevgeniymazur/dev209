@@ -1,0 +1,471 @@
+/* === Variables & Reset === */
+:root {
+  /* Color palette */
+  --clr-primary:   #fed9a5;  /* logo background */
+  --clr-secondary: #c45a28;  /* sign-up button */
+  --clr-accent:    #e8dfc7;  /* subscribe banner */
+  --clr-bg:        #f5f0e8;  /* page background */
+  --clr-text:      #333;     /* body text */
+
+  /* Type scale */
+  --fs-sm: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.5rem;
+}
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+body {
+  font-family: Georgia, serif;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--clr-text);
+  background: var(--clr-bg);
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === Header === */
+.header {
+  background: var(--clr-primary);
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+.logo span {
+  font-size: var(--fs-lg);
+  font-weight: bold;
+}
+.nav {
+  display: flex;
+  align-items: center;
+}
+.nav a {
+  margin-right: 1.5rem;
+  text-decoration: none;
+  color: var(--clr-text);
+  font-weight: 500;
+}
+.nav a:last-child {
+  margin-right: 0;
+}
+.btn-signup {
+  background: var(--clr-secondary);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* === Hero === */
+.hero {
+  background-image: url('/images/fireplace.png');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+}
+
+/* === Features (Grid) === */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+.card {
+  background: rgba(245, 241, 229, 0.9);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.card h3 {
+  font-size: var(--fs-md);
+}
+
+/* === Subscribe Banner === */
+.subscribe-banner {
+  background: var(--clr-accent);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+.subscribe-banner h3 {
+  font-size: var(--fs-lg);
+}
+
+/* === Footer === */
+.footer {
+  background: var(--clr-primary);
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.social a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--clr-text);
+  font-size: var(--fs-md);
+}
+
+/* === Responsive Breakpoints === */
+/* Tablets and up: show more columns, taller hero */
+@media (min-width: 600px) {
+  .hero {
+    height: 50vh;
+  }
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns, bigger spacing */
+@media (min-width: 1024px) {
+  .header-content {
+    padding: 1.5rem 0;
+  }
+  .hero {
+    height: 60vh;
+  }
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 3rem 0;
+  }
+}
+
+/* Mobile nav stack & footer stack */
+@media (max-width: 600px) {
+  .header-content,
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav {
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav a {
+    margin: 0.5rem;
+  }
+  .btn-signup {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Feature rows */
+.row-two,
+.row-three {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.row-two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.row-three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  background: rgba(245, 241, 229, 0.9);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+/* Mobile: stack all cards */
+@media (max-width: 600px) {
+  .row-two,
+  .row-three {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet: keep 2 cols in row-two, stack row-three into 2/1 */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .row-three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop (≥1024px): row-two = 2, row-three = 3 */
+@media (min-width: 1024px) {
+  .row-two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .row-three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* === Feature cards with image overlays === */
+.row-two,
+.row-three {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.row-two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.row-three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  height: 250px; /* adjust as needed */
+}
+
+.card-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card:hover .card-bg {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  background: rgba(245,241,229,0.85);
+  padding: 1rem;
+}
+
+.overlay h3 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+/* === Subscribe banner two-col layout === */
+.subscribe-banner.two-col {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  background: var(--clr-accent);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+
+.subscribe-banner .text h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.subscribe-banner .image img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* === Responsive tweaks === */
+@media (max-width: 600px) {
+  /* stack feature cards */
+  .row-two,
+  .row-three {
+    grid-template-columns: 1fr;
+  }
+  /* stack subscribe banner */
+  .subscribe-banner.two-col {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+  /* row-three becomes 2 columns on tablet */
+  .row-three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .row-two { grid-template-columns: repeat(2, 1fr); }
+  .row-three { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* === Feature Cards with Image Overlays === */
+.row-two,
+.row-three {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.row-two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.row-three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  height: 250px; /* adjust height as needed */
+}
+
+.card-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-bg {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  background: rgba(245, 241, 229, 0.85);
+  padding: 1rem;
+}
+
+.overlay h3 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* === Subscribe Banner Two-Column Layout === */
+.subscribe-banner.two-col {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  background: var(--clr-accent);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+
+.subscribe-banner.two-col .text h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.subscribe-banner.two-col .image img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* === Responsive Overrides === */
+@media (max-width: 600px) {
+  /* stack feature cards */
+  .row-two,
+  .row-three {
+    grid-template-columns: 1fr;
+  }
+  /* stack subscribe banner */
+  .subscribe-banner.two-col {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  /* row-three becomes 2 columns on tablet */
+  .row-three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* restore full layout on desktop */
+  .row-two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .row-three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+.subscribe-banner {
+  background-color: rgba(210, 180, 140, 0.8); 
+  padding: 2rem 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+
+
+.subscribe-banner.two-col {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+
+@media (max-width: 600px) {
+  .subscribe-banner.two-col {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+/* === Override Subscribe Banner Color & Opacity === */
+.subscribe-banner {
+  /* darker-tan RGBA, 80% opacity */
+  background: rgba(210, 180, 140, 0.8) !important;
+}
+:root {
+  /* add an RGB var for your primary tan */
+  --clr-primary-rgb: 254, 217, 165;
+}
+
+/* make the overlays match header/footer color, but translucent */
+.card .overlay {
+  background-color: rgba(var(--clr-primary-rgb), 0.7) !important;
+  /* keep your existing padding/text styles */
+}
+
+:root {
+  /* Rich copper */
+  --copper-rich:   #B87333;
+  /* Warm mid-tone copper */
+  --copper-mid:    #C97434;
+  /* Light, softly patinated copper */
+  --copper-light:  #E0B080;
+}
+
+/* Full-page background */
+body {
+  background: var(--copper-mid);
+}
